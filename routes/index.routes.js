@@ -13,5 +13,14 @@ router.get('/slug/:slug', (req, res, next) => {
     res.status(404).send({ message: 'Product Not Found' });
   }
 });
+router.get('/:id', (req, res, next) => {
+  const { id } = req.params;
+  const product = data.products.find((oneProduct) => oneProduct._id === id);
+  if (product) {
+    res.json(product);
+  } else {
+    res.status(404).send({ message: 'Product Not Found' });
+  }
+});
 
 module.exports = router;

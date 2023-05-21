@@ -12,6 +12,9 @@ require('./config')(app); // It runs most pieces of middleware
 const indexRoutes = require('./routes/index.routes');
 app.use('/api/products', indexRoutes);
 
+const mainRoutes = require('./routes/main.routes');
+app.use('/api/main', mainRoutes);
+
 require('./error-handling')(app); // To handle errors
 
 module.exports = app;
