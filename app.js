@@ -9,8 +9,8 @@ const app = express();
 require('./config')(app); // It runs most pieces of middleware
 
 // 👇 Start handling routes here
-const indexRoutes = require('./routes/index.routes');
-app.use('/api/products', indexRoutes);
+const productRoutes = require('./routes/product.routes');
+app.use('/api/products', productRoutes);
 
 const mainRoutes = require('./routes/main.routes');
 app.use('/api/main', mainRoutes);

@@ -4,7 +4,8 @@ const router = express.Router();
 const data = require('../data.js');
 
 router.get('/', async (req, res) => {
+  await Product.deleteMany({});
   const createdProducts = await Product.insertMany(data.products);
-  res.json({ createdProducts });
+  res.send({ createdProducts });
 });
 module.exports = router;

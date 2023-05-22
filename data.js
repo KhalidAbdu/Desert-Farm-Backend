@@ -1,8 +1,8 @@
 const data = {
   products: [
     {
-      name: 'product1 tool',
-      slug: 'product1-tool',
+      name: 'product1',
+      slug: 'product1-',
       image: '/images/p1.png',
       price: 230,
       countInTock: 10,
@@ -13,8 +13,8 @@ const data = {
       decription: 'good',
     },
     {
-      name: 'product2 tool',
-      slug: 'product2-tool',
+      name: 'product2',
+      slug: 'product2-',
       image: '/images/p2.png',
       price: 230,
       countInTock: 0,
@@ -25,8 +25,8 @@ const data = {
       decription: 'good',
     },
     {
-      name: 'product3 tool',
-      slug: 'product3-tool',
+      name: 'product3',
+      slug: 'product3-',
       image: '/images/p3.png',
       price: 230,
       countInTock: 10,
@@ -37,8 +37,8 @@ const data = {
       decription: 'good',
     },
     {
-      name: 'product4 tool',
-      slug: 'product4-tool',
+      name: 'product4',
+      slug: 'product4-',
       image: '/images/p4.png',
       price: 230,
       countInTock: 10,
