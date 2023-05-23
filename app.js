@@ -18,6 +18,9 @@ app.use('/api/main', mainRoutes);
 const userRoutes = require('./routes/users.routes');
 app.use('/api/users', userRoutes);
 
+const orderRoutes = require('./routes/order.routes');
+app.use('/api/orders', orderRoutes);
+
 require('./error-handling')(app); // To handle errors
 
 module.exports = app;
