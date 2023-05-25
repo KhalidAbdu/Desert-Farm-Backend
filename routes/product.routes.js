@@ -8,6 +8,23 @@ router.get('/', async (req, res) => {
   const products = await Product.find();
   res.send(products);
 });
+router.post('/', isAuth, isAdmin, async (req, res) => {
+  const newProduct = new Product({
+    name: 'new name' + Date.now(),
+    slug: 'new-name' + Date.now(),
+    image: '/images/p1.png',
+    brand: 'new brand',
+    decription: 'new decription',
+    price: 0,
+    countInTock: 0,
+    numReviews: 0,
+    rating: 0,
+    category: 'new category',
+  });
+  const product = await newProduct.save();
+  res.send({ message: 'Product Created', product });
+});
+
 const PAGE_SIZE = 3;
 router.get('/admin', isAuth, isAdmin, async (req, res) => {
   const { query } = req;
