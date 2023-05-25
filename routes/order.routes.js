@@ -3,7 +3,7 @@ const User = require('../models/User.model');
 const Order = require('../models/Order.model');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
-const { isAuth } = require('../utils.js');
+const { isAuth, isAdmin } = require('../utils.js');
 
 router.post('/', isAuth, async (req, res) => {
   try {
@@ -18,6 +18,32 @@ router.post('/', isAuth, async (req, res) => {
     });
     const order = await newOrder.save();
     res.status(201).send({ message: 'New Order Created', order });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error });
+  }
+});
+
+router.get('/summary', isAuth, isAdmin, async (req, res) => {
+  try {
+    const orders = await Order.aggregate([
+      {
+        $group: {
+          _id: null,
+          numOrders: { $sum: 1 },
+          totalSales: { $sum: '$totalPrice' },
+        },
+      },
+    ]);
+    const users = await User.aggregate([
+      {
+        $group: {
+          _id: null,
+          numUsers: { $sum: 1 },
+        },
+      },
+    ]);
+    res.send({ users, orders });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error });
