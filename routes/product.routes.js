@@ -44,6 +44,16 @@ router.put('/:id', isAuth, isAdmin, async (req, res) => {
   }
 });
 
+router.delete('/:id', isAuth, isAdmin, async (req, res) => {
+  const product = await Product.findById(req.params.id);
+  if (product) {
+    await product.deleteOne();
+    res.send({ message: 'Product Deleted' });
+  } else {
+    res.status(404).send({ message: 'Product Not Found' });
+  }
+});
+
 const PAGE_SIZE = 3;
 router.get('/admin', isAuth, isAdmin, async (req, res) => {
   const { query } = req;
