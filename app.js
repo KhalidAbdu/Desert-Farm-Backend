@@ -21,6 +21,9 @@ app.use('/api/users', userRoutes);
 const orderRoutes = require('./routes/order.routes');
 app.use('/api/orders', orderRoutes);
 
+const uploadRoutes = require('./routes/upload.routes');
+app.use('/api/upload', uploadRoutes);
+
 require('./error-handling')(app); // To handle errors
 
 module.exports = app;
