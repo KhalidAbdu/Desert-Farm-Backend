@@ -25,6 +25,25 @@ router.post('/', isAuth, isAdmin, async (req, res) => {
   res.send({ message: 'Product Created', product });
 });
 
+router.put('/:id', isAuth, isAdmin, async (req, res) => {
+  const productId = req.params.id;
+  const product = await Product.findById(productId);
+  if (product) {
+    product.name = req.body.name;
+    product.slug = req.body.slug;
+    product.price = req.body.price;
+    product.decription = req.body.decription;
+    product.countInTock = req.body.countInTock;
+    product.brand = req.body.brand;
+    product.category = req.body.category;
+    product.image = req.body.image;
+    await product.save();
+    res.send({ message: 'Product Updated' });
+  } else {
+    res.status(404).send({ message: 'Product Not Found' });
+  }
+});
+
 const PAGE_SIZE = 3;
 router.get('/admin', isAuth, isAdmin, async (req, res) => {
   const { query } = req;
